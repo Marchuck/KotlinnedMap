@@ -1,5 +1,6 @@
 package pl.marchuck.majormallstrikesback.model
 
+
 /**
  * Created by Łukasz Marczak
 

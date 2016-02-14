@@ -1,14 +1,6 @@
 package pl.marchuck.majormallstrikesback.rest
 
-import android.util.Log
-
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonDeserializationContext
-import com.google.gson.JsonDeserializer
-import com.google.gson.JsonElement
-import com.google.gson.JsonParseException
-
+import com.google.gson.*
 import retrofit.RestAdapter
 import retrofit.converter.GsonConverter
 
@@ -37,7 +29,7 @@ class GenericAdapter<T>(endpoint: String, templateClass: Class<T>) {
 
         abstract fun setDestinationClass(): Class<T>
 
-        @Throws(JsonParseException::class)
+//        @Throws(JsonParseException::class)
         override fun deserialize(json: JsonElement, typeOfT: java.lang.reflect.Type,
                                  context: JsonDeserializationContext): T {
 

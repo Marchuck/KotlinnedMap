@@ -15,7 +15,8 @@ interface WeatherClient {
     fun getCityWeather(@Query("q") query: String, @Query("appid") apiKey: String): rx.Observable<WeatherResponse>
 
     companion object {
-
         val endpoint = "http://api.openweathermap.org"
     }
+
+
 }
