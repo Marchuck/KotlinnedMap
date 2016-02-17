@@ -1,6 +1,5 @@
 package pl.marchuck.majormallstrikesback.service
 
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -11,22 +10,13 @@ import android.widget.Toast
 
  * @since 14.02.16
  */
-class CallReceiver : BroadcastReceiver() {
+class BroadcastReceiver : android.content.BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
-        val millis = System.currentTimeMillis();
-        Log.d(TAG, "onReceive() called with: context = [$context],\n intent = [$intent]")
+        Log.d("CallReceiver", "onReceive() called with: context = [$context],\n intent = [$intent]")
 
         val message = intent.action
-
         Toast.makeText(context.applicationContext, message, Toast.LENGTH_LONG).show()
-        val time = System.currentTimeMillis() - millis;
-        Log.d(TAG, "time elapsed : $time")
-    }
-
-
-    companion object {
-        val TAG = "CallReceiver";
     }
 }
 

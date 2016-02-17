@@ -8,6 +8,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--<string name="server_api_key">AIzaSyA7R3Y-drgnw-K9ycUexzC5X_27nGEemGY</string>-->
+    <!--<string name="sender_id">1031284909081</string>-->
+    <string name="google_api_key">AIzaSyDYa1R4kLq2DajoTm-8Mxa72_SJ9pb32RM</string>
 
 
 </resources>

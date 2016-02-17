@@ -2,7 +2,6 @@ package pl.marchuck.majormallstrikesback.model
 
 /**
  * Created by Łukasz Marczak
-
- * @since 11.02.16
+ * @since 17.02.16
  */
-data class Coord(val lon:Double,val lat:Double)
+data class GViewport(val northeast: Loc?,val southwest: Loc?);

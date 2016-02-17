@@ -1,6 +1,7 @@
 package pl.marchuck.majormallstrikesback
 
-import pl.marchuck.majormallstrikesback.model.WeatherResponse
+import com.google.android.gms.maps.GoogleMap
+import pl.marchuck.majormallstrikesback.model.weather.WeatherResponse
 
 /**
  * Created by Łukasz Marczak

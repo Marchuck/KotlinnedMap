@@ -1,6 +1,6 @@
 package pl.marchuck.majormallstrikesback.rest
 
-import pl.marchuck.majormallstrikesback.model.WeatherResponse
+import pl.marchuck.majormallstrikesback.model.weather.WeatherResponse
 import retrofit.http.GET
 import retrofit.http.Query
 

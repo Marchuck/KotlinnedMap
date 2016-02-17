@@ -7,19 +7,36 @@
     android:layout_height="match_parent"
     tools:showIn="@layout/activity_second">
 
-        <RelativeLayout
-            android:id="@+id/map_content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:context="pl.marchuck.majormallstrikesback.SecondActivity" />
 
-        <RelativeLayout
-            android:id="@+id/drawer_layout_content"
-            android:layout_width="250sp"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:scrollbars="vertical" />
+    <RelativeLayout
+        android:id="@+id/map_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="pl.marchuck.majormallstrikesback.SecondActivity" />
+
+    <RelativeLayout
+        android:id="@+id/drawer_layout_content"
+        android:layout_width="250sp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:scrollbars="vertical">
+
+        <EditText
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:padding="10sp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="300sp"
+            android:layout_below="@+id/search_view"
+            android:layout_centerHorizontal="true"
+            android:padding="10sp" />
+    </RelativeLayout>
 
 
 </android.support.v4.widget.DrawerLayout>

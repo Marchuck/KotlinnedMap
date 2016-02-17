@@ -3,15 +3,15 @@ package pl.marchuck.majormallstrikesback
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import pl.marchuck.majormallstrikesback.model.Main
 
-import pl.marchuck.majormallstrikesback.model.WeatherResponse
-import pl.marchuck.majormallstrikesback.model.wrappers.MainSerializable
-import pl.marchuck.majormallstrikesback.utils.UniversalConverter
+import pl.marchuck.majormallstrikesback.model.weather.WeatherResponse
+import pl.marchuck.majormallstrikesback.utils.KotConverter
+import pl.marchuck.majormallstrikesback.utils.WeatherAdapter
 
 /**
  * A simple [Fragment] subclass.
@@ -20,21 +20,13 @@ import pl.marchuck.majormallstrikesback.utils.UniversalConverter
  */
 class WeatherFragment : Fragment() {
 
-    var clouds: String? = null;
-    var main: Main? = null;
-    var weather: String? = null;
-    var sunset: Long? = null;
+    var weatherResponse: WeatherResponse? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        clouds = arguments?.getString("CLOUDS");
-        weather = arguments?.getString("WEATHER");
-        sunset = arguments?.getLong("SUNSET");
-        val mains = arguments?.getSerializable("MAIN");
-        if (mains is MainSerializable) {
-            main = mains.main
-        }
+        weatherResponse = arguments?.getSerializable("WEATHER_RESPONSE") as WeatherResponse;
+
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -45,20 +37,27 @@ class WeatherFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val name0 = view?.findViewById(R.id.name0) as TextView
-        val name1 = view?.findViewById(R.id.name1) as TextView
-        val name2 = view?.findViewById(R.id.name2) as TextView
-        val name3 = view?.findViewById(R.id.name3) as TextView
-        val name4 = view?.findViewById(R.id.name4) as TextView
-        name0.text = clouds;
-        name1.text = weather;
-        name2.text = UniversalConverter.kelvin2Celcius(main?.temp);
-        name3.text = UniversalConverter.dateFromTimestamp(sunset);
+        val recyclerView = view?.findViewById(R.id.recyclerView) as RecyclerView
 
-        //        name1.text = weatherResponse?.base;
-        //        name2.text = weatherResponse?.component1().toString();
-        //        name3.text = weatherResponse?.component2()?.get(0).toString();
-        //        name4.text = weatherResponse?.component6().toString();
+        recyclerView.layoutManager = LinearLayoutManager(activity);
+
+
+        val dataSet = arrayOf(
+                weatherResponse?.name,
+                weatherResponse?.coord.toString(),
+                weatherResponse?.weather?.get(0)?.description,
+                "pressure: " + weatherResponse?.main?.pressure?.toString(),
+                "humidity: " + weatherResponse?.main?.humidity,
+                "Sea level: " + weatherResponse?.main?.sea_level.toString(),
+                KotConverter.dateFromTimestamp(weatherResponse?.clouds?.all?.toLong()),
+                "Sunrise: " + KotConverter.dateFromTimestamp(weatherResponse?.sys?.sunrise),
+                "Sunset: " + KotConverter.dateFromTimestamp(weatherResponse?.sys?.sunset),
+                weatherResponse?.wind.toString(),
+                "Current temperature: " + KotConverter.kelvin2Celcius(weatherResponse?.main?.temp),
+                "Min temperature: " + KotConverter.kelvin2Celcius(weatherResponse?.main?.temp_min),
+                "Max temperature: " + KotConverter.kelvin2Celcius(weatherResponse?.main?.temp_max));
+
+        recyclerView.adapter = WeatherAdapter(dataSet)
     }
 
     companion object {
@@ -73,10 +72,7 @@ class WeatherFragment : Fragment() {
         fun newInstance(response: WeatherResponse): WeatherFragment {
             val fragment = WeatherFragment()
             val args = Bundle()
-            args.putString("CLOUDS", response.clouds.toString());
-            args.putString("WEATHER", response.weather[0].description);
-            args.putLong("SUNSET", response.sys.sunset);
-            args.putSerializable("MAIN", MainSerializable(response.main));
+            args.putSerializable("WEATHER_RESPONSE", response);
             fragment.arguments = args
             return fragment
         }

@@ -2,7 +2,6 @@ package pl.marchuck.majormallstrikesback.model
 
 /**
  * Created by Łukasz Marczak
-
- * @since 11.02.16
+ * @since 18.02.16
  */
-data class Wind(val speed: Double, val deg: Double)
+data class Loc(val lat: Double,val lng:Double);

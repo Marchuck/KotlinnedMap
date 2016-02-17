@@ -5,30 +5,8 @@
     android:background="#80ffffff"
     tools:context="pl.marchuck.majormallstrikesback.WeatherFragment">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/name0"
-        style="@style/textViewStyle"
-        android:text="text1" />
-    <TextView
-        android:id="@+id/name1"
-        style="@style/textViewStyle"
-        android:text="text1" />
-    <TextView
-        android:id="@+id/name2"
-        style="@style/textViewStyle"
-        android:text="text1" />
-    <TextView
-        android:id="@+id/name3"
-        style="@style/textViewStyle"
-        android:text="text1" />
-    <TextView
-        android:id="@+id/name4"
-        style="@style/textViewStyle"
-        android:text="text1" />
-    </LinearLayout>
+        android:layout_height="match_parent"/>
 </RelativeLayout>

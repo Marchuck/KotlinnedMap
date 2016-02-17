@@ -3,7 +3,7 @@ package pl.marchuck.majormallstrikesback.rest
 import android.content.Context
 
 import pl.marchuck.majormallstrikesback.R
-import pl.marchuck.majormallstrikesback.model.WeatherResponse
+import pl.marchuck.majormallstrikesback.model.weather.WeatherResponse
 import rx.Observable
 
 
