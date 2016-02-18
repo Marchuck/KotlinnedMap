@@ -1,4 +1,4 @@
-package pl.marchuck.majormallstrikesback.utils
+package pl.marchuck.majormallstrikesback.observables
 
 import android.text.Editable
 import android.text.TextWatcher

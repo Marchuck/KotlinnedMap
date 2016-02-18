@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 import pl.marchuck.majormallstrikesback.R
+import pl.marchuck.majormallstrikesback.interfaces.ItemClickCallback
 import pl.marchuck.majormallstrikesback.model.poi.Prediction
 
 /**

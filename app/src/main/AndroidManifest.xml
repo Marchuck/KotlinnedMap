@@ -24,7 +24,7 @@
             android:value="AIzaSyB2x6vCjqLiQWWQmVjnTmpwM6U7_OmHUIc" />
 
         <activity
-            android:name=".PlacesActivity"
+            android:name=".ui.PlacesActivity"
             android:label="@string/title_activity_second"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

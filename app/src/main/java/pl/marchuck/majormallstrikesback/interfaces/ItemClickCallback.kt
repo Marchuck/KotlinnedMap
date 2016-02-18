@@ -1,4 +1,4 @@
-package pl.marchuck.majormallstrikesback.utils
+package pl.marchuck.majormallstrikesback.interfaces
 
 import pl.marchuck.majormallstrikesback.model.poi.Prediction
 

@@ -1,9 +1,11 @@
-package pl.marchuck.majormallstrikesback.rest
+package pl.marchuck.majormallstrikesback.observables
 
 import android.content.Context
 
 import pl.marchuck.majormallstrikesback.R
 import pl.marchuck.majormallstrikesback.model.weather.WeatherResponse
+import pl.marchuck.majormallstrikesback.rest.GenericAdapter
+import pl.marchuck.majormallstrikesback.rest.WeatherClient
 import rx.Observable
 
 

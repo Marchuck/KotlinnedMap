@@ -1,4 +1,4 @@
-package pl.marchuck.majormallstrikesback
+package pl.marchuck.majormallstrikesback.ui
 
 
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import pl.marchuck.majormallstrikesback.R
 
 import pl.marchuck.majormallstrikesback.model.weather.WeatherResponse
 import pl.marchuck.majormallstrikesback.utils.KotConverter

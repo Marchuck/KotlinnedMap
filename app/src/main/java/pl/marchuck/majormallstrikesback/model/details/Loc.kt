@@ -1,4 +1,4 @@
-package pl.marchuck.majormallstrikesback.model
+package pl.marchuck.majormallstrikesback.model.details
 
 /**
  * Created by Łukasz Marczak

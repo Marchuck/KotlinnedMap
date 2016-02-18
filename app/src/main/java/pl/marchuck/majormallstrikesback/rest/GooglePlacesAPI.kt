@@ -1,6 +1,6 @@
 package pl.marchuck.majormallstrikesback.rest
 
-import pl.marchuck.majormallstrikesback.model.GooglePlace
+import pl.marchuck.majormallstrikesback.model.details.GooglePlace
 import pl.marchuck.majormallstrikesback.model.poi.Poi
 import retrofit.http.GET
 import retrofit.http.Query

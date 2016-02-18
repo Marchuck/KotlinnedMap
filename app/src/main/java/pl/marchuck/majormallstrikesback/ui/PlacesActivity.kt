@@ -1,5 +1,6 @@
-package pl.marchuck.majormallstrikesback
+package pl.marchuck.majormallstrikesback.ui
 
+import android.R
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -20,16 +21,17 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import pl.marchuck.majormallstrikesback.model.GooglePlace
+import pl.marchuck.majormallstrikesback.interfaces.DrawerConnector
+import pl.marchuck.majormallstrikesback.interfaces.ItemClickCallback
+import pl.marchuck.majormallstrikesback.model.details.GooglePlace
 import pl.marchuck.majormallstrikesback.model.poi.MatchedSubstring
 import pl.marchuck.majormallstrikesback.model.poi.Prediction
 import pl.marchuck.majormallstrikesback.model.poi.Term
 import pl.marchuck.majormallstrikesback.model.weather.WeatherResponse
-import pl.marchuck.majormallstrikesback.rest.GoogleObservable
-import pl.marchuck.majormallstrikesback.rest.Zipper
-import pl.marchuck.majormallstrikesback.utils.ItemClickCallback
+import pl.marchuck.majormallstrikesback.observables.GoogleObservable
+import pl.marchuck.majormallstrikesback.observables.RxSuggestionWrapper
+import pl.marchuck.majormallstrikesback.observables.Zipper
 import pl.marchuck.majormallstrikesback.utils.PoiNearbyAdapter
-import pl.marchuck.majormallstrikesback.utils.RxSuggestionWrapper
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import java.util.*
@@ -51,8 +53,8 @@ class PlacesActivity : AppCompatActivity() {
     fun initSearchView(latLng: LatLng, map: GoogleMap): Unit {
         //        val rel = findViewById(R.id.drawer_layout_content) as RelativeLayout
         val ctx = SecondActivity@this
-        val searchView = findViewById(R.id.search_view) as EditText
-        val recycler = findViewById(R.id.recycler_view) as RecyclerView
+        val searchView = findViewById(pl.marchuck.majormallstrikesback.R.id.search_view) as EditText
+        val recycler = findViewById(pl.marchuck.majormallstrikesback.R.id.recycler_view) as RecyclerView
         //        val suggestion = com.arlib.floatingsearchview.suggestions.model.SearchSuggestion
 
         recycler.layoutManager = LinearLayoutManager(SecondActivity@this)
@@ -71,7 +73,7 @@ class PlacesActivity : AppCompatActivity() {
                                     drawNewMarker(googlePlace, map)
                                 }, {
                                     throwable ->
-                                    Log.e(TAG,"error occurred "+throwable.message );
+                                    Log.e(TAG, "error occurred " + throwable.message);
 
                                 }
 
@@ -114,19 +116,19 @@ class PlacesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_second)
-        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        setContentView(pl.marchuck.majormallstrikesback.R.layout.activity_second)
+        val toolbar = findViewById(pl.marchuck.majormallstrikesback.R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
         initDrawer(toolbar);
 
 
-        val fab = findViewById(R.id.fab) as FloatingActionButton
+        val fab = findViewById(pl.marchuck.majormallstrikesback.R.id.fab) as FloatingActionButton
 
         fab.setOnClickListener { view ->
 
             val mapFragment = SupportMapFragment.newInstance()
             SecondActivity@this.supportFragmentManager.beginTransaction()
-                    .replace(R.id.map_content, mapFragment).commitAllowingStateLoss()
+                    .replace(pl.marchuck.majormallstrikesback.R.id.map_content, mapFragment).commitAllowingStateLoss()
 
             Zipper.merger(SecondActivity@this, mapFragment,
                     object : Zipper.Zippo {
@@ -179,7 +181,7 @@ class PlacesActivity : AppCompatActivity() {
             map.animateCamera(CameraUpdateFactory
                     .newCameraPosition(CameraPosition(latLng, 16f, 60f,
                             Random().nextInt(360).toFloat())));
-            val drawerLayout = findViewById(R.id.drawer_layout) as DrawerLayout
+            val drawerLayout = findViewById(pl.marchuck.majormallstrikesback.R.id.drawer_layout) as DrawerLayout
             drawerLayout.closeDrawer(Gravity.RIGHT)
         }
     }
@@ -187,15 +189,15 @@ class PlacesActivity : AppCompatActivity() {
     fun initDrawer(toolbar: Toolbar): Unit {
         Log.d(TAG, "initDrawer() called with: " + "");
 
-        val drawerLayout = findViewById(R.id.drawer_layout) as DrawerLayout
-        val toggle = ActionBarDrawerToggle(SecondActivity@this, drawerLayout, toolbar, android.R.string.ok,
-                android.R.string.no);
+        val drawerLayout = findViewById(pl.marchuck.majormallstrikesback.R.id.drawer_layout) as DrawerLayout
+        val toggle = ActionBarDrawerToggle(SecondActivity@this, drawerLayout, toolbar, R.string.ok,
+                R.string.no);
 
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
         toggle.isDrawerIndicatorEnabled = true;
         drawerLayout.closeDrawer(Gravity.RIGHT);
-        val fab = findViewById(R.id.fab) as FloatingActionButton
+        val fab = findViewById(pl.marchuck.majormallstrikesback.R.id.fab) as FloatingActionButton
         drawerLayout.setDrawerListener(object : DrawerLayout.DrawerListener {
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
 

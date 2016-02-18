@@ -1,4 +1,4 @@
-package pl.marchuck.majormallstrikesback.rest
+package pl.marchuck.majormallstrikesback.observables
 
 import android.content.Context
 import android.util.Log
@@ -25,7 +25,7 @@ object Zipper {
         Observable.zip(WeatherObservable.getWeather(ctx),
                 GoogleObservable.getMap(mapFragment),
                 Func2<WeatherResponse,
-                        com.google.android.gms.maps.GoogleMap, kotlin.String> { response, googleMap ->
+                        GoogleMap, String> { response, googleMap ->
                     callback.onResponse(response, googleMap)
 
                     return@Func2 "" + response.coord.lon + "," + response.coord.lat

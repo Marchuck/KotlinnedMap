@@ -1,6 +1,4 @@
-package pl.marchuck.majormallstrikesback.model
-
-import com.google.android.gms.maps.model.LatLng
+package pl.marchuck.majormallstrikesback.model.details
 
 /**
  * Created by Łukasz Marczak
