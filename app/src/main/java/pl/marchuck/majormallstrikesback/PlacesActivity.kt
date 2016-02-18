@@ -1,6 +1,5 @@
 package pl.marchuck.majormallstrikesback
 
-import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -36,7 +35,7 @@ import rx.schedulers.Schedulers
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class SecondActivity : AppCompatActivity() {
+class PlacesActivity : AppCompatActivity() {
     val TAG = "SecondActivity";//::class.simpleName;
     var array = arrayOf(GoogleMap.MAP_TYPE_SATELLITE, GoogleMap.MAP_TYPE_TERRAIN, GoogleMap.MAP_TYPE_NONE,
             GoogleMap.MAP_TYPE_NORMAL, GoogleMap.MAP_TYPE_HYBRID);
@@ -103,8 +102,6 @@ class SecondActivity : AppCompatActivity() {
                     Log.d(TAG, "___________________________")
                     Log.d("DONE", "Cos sie dzieje: " + suggestions.size)
                 }, { throwable -> Log.e("ERROR", "Error occurred: " + throwable.message) })
-
-
     }
 
     private fun emptyPrediction(): Prediction {
@@ -169,8 +166,8 @@ class SecondActivity : AppCompatActivity() {
 
     fun drawNewMarker(googlePlace: GooglePlace, map: GoogleMap): Unit {
         runOnUiThread {
-            val name = googlePlace?.result?.name
-            val snippet = googlePlace?.result?.adr_address
+            val name = googlePlace?.result?.name ?: "";
+            val snippet = googlePlace?.result?.formatted_address ?: "";
             val lat = googlePlace?.result?.geometry?.location?.lat ?: 50.0;
             val lng = googlePlace?.result?.geometry?.location?.lng ?: 19.0;
 
